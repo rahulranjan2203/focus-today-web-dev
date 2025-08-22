@@ -1,0 +1,303 @@
+/* --- Add this at the top of your style.css --- */
+/* NEW: Background Theme Classes */
+html {
+    /* Default background (Theme 1) */
+    background-image: url('backimg.png'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100%;
+}
+html.theme-bg-1 {
+    background-image: url('backimg.png');
+}
+/* MODIFIED: Swapped image URLs to match the thumbnails */
+html.theme-bg-2 {
+    background-image: url('nightimg.png');
+}
+html.theme-bg-3 {
+    background-image: url('summerimg.png');
+}
+
+/* --- Global Styles & THEME Variables --- */
+:root {
+    /* Dark Theme (Default) */
+    --bg-overlay: rgba(10, 10, 10, 0.4);
+    --glass-bg: rgba(25, 25, 25, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --text-color: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --input-bg: rgba(0, 0, 0, 0.3);
+    --accent-color: #4ba8f494;
+    --hover-accent: #959a9f;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --clock-text: #e0e0e0;
+    --summary-bg: rgba(50, 50, 50, 0.7);
+    --button-text-color: #ffffff; 
+}
+
+body.light-mode {
+    /* Light Theme */
+    --bg-overlay: rgba(255, 255, 255, 0.05);
+    --glass-bg: rgba(245, 245, 245, 0.6);
+    --glass-border: rgba(0, 0, 0, 0.15);
+    --text-color: #333333;
+    --text-muted: #555555;
+    --input-bg: rgba(255, 255, 255, 0.6);
+    --accent-color: #0d8affab;
+    --hover-accent: #5b5e61;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --clock-text: #444444;
+    --summary-bg: rgba(200, 200, 200, 0.8);
+    --button-text-color: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* --- Navigation Bar --- */
+.top-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 2rem;
+    height: 60px;
+    box-sizing: content-box;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+.minimal-clock {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--clock-text);
+    text-shadow: 0 1px 4px var(--shadow-color);
+    font-family: 'Roboto Mono', 'Consolas', monospace;
+    letter-spacing: 2px;
+}
+.minimal-clock .separator {
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.app-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+    padding-bottom: 5rem;
+    box-sizing: border-box;
+}
+
+.content-container {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 80px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 var(--shadow-color);
+    padding: 1.5rem 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 1s ease;
+    transition: background 0.3s ease, border 0.3s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- Header & Controls --- */
+.app-header { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; width: 100%; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border); }
+.app-header h1 { margin: 0; color: var(--text-color); font-weight: 500; font-size: 1.8rem; }
+.app-header h4 { margin: 0; color: var(--text-muted); font-weight: 400; font-size: 1rem; }
+.controls .header-btn { margin-left: 15px; }
+
+/* --- All other styles below remain unchanged --- */
+.header-btn, .close-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-color); opacity: 0.8; transition: opacity 0.2s, color 0.2s; }
+.header-btn:hover, .close-btn:hover { opacity: 1; color: var(--accent-color); }
+.input-container { display: flex; gap: 10px; margin: 1.5rem 0; }
+input, select { width: 100%; padding: 12px; border: 1px solid var(--glass-border); border-radius: 8px; background-color: var(--input-bg); color: var(--text-color); font-size: 16px; transition: border-color 0.3s; }
+input:focus, select:focus { border-color: var(--accent-color); outline: none; }
+button { padding: 7px 10px; border-radius: 10px; border: none; background-color: var(--accent-color); color: var(--button-text-color); font-weight: bold; cursor: pointer; transition: all 0.2s ease-in-out; font-size: 16px; }
+button:hover { background-color: var(--hover-accent); transform: translateY(-2px); box-shadow: 0 4px 8px var(--shadow-color); }
+.view-controls { margin-bottom: 1rem; }
+.view-btn { background-color: transparent; color: var(--text-color); border: 1px solid var(--glass-border); opacity: 0.7; font-size: 15px; }
+.view-btn.active { background-color: var(--accent-color); color: var(--button-text-color); opacity: 1; }
+.task-area { flex-grow: 1; overflow-y: auto; padding-right: 10px; }
+.task-item { 
+    display: flex; 
+    align-items: center; 
+    padding: 12px 15px; 
+    background-color: var(--input-bg); 
+    border-radius: 8px; 
+    margin-bottom: 10px; 
+    animation: slideInUp 0.5s ease; 
+    transition: transform 0.2s, box-shadow 0.2s; 
+    font-size: 16px;
+    color: var(--text-color);
+}
+.task-checkbox { width: 18px; height: 18px; margin-right: 15px; cursor: pointer; accent-color: var(--accent-color); }
+.priority-tag { font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 12px; margin-right: 15px; text-transform: uppercase; }
+.priority-tag.high { background-color: var(--priority-high); color: rgba(255, 0, 0, 0.551); }
+.priority-tag.medium { background-color: var(--priority-medium); color: rgba(255, 255, 0, 0.526); }
+.priority-tag.low { background-color: var(--priority-low); color: rgba(0, 128, 0, 0.995); }
+.task-item-content { flex-grow: 1; }
+.task-item-content.completed p { text-decoration: line-through; opacity: 0.6; }
+.kanban-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.kanban-column { padding: 15px; border-radius: 8px; background: rgba(45, 46, 47, 0.527); }
+.kanban-column h3 { margin-top: 0; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; color: var(--text-color); font-weight: 500; }
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.273); display: flex; justify-content: center; align-items: center; z-index: 1001; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+.modal-overlay:not(.hidden) { opacity: 1; visibility: visible; }
+.modal-content { background: var(--summary-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(15px); padding: 20px; border-radius: 12px; width: 90%; max-width: 400px; transform: scale(0.9); transition: transform 0.3s; color: var(--text-color); }
+.modal-overlay:not(.hidden) .modal-content { transform: scale(1); }
+.close-btn { position: absolute; top: 15px; right: 20px; }
+.hidden { display: none !important; }
+.gamification-stats { text-align: center; padding-top: 1rem; opacity: 0.8; color: var(--text-muted); }
+.gamification-stats strong { color: var(--text-color); }
+.summary-list { list-style: none; padding: 0; }
+.summary-list li { padding: 8px 0; border-bottom: 1px solid var(--glass-border); }
+.summary-list li:last-child { border-bottom: none; }
+
+footer {
+    text-align: center;
+    padding: 0.1rem; /* MODIFIED: Reduced padding */
+    font-size: 0.31rem; /* MODIFIED: Added smaller font size */
+    color: var(--text-muted);
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* --- Focus Page Styles --- */
+.focus-body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-color);
+}
+.focus-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+.focus-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.pomodoro-timer-large {
+    font-size: 18vw;
+    font-weight: bold;
+    font-family: 'Roboto Mono', 'Consolas', monospace;
+    line-height: 1;
+    margin-bottom: 1rem;
+    text-shadow: 0 5px 20px var(--shadow-color);
+}
+.focus-task {
+    margin-bottom: 2rem;
+}
+.focus-task h1 {
+    color: #e5e8e8;
+    font-size: 4rem;
+    font-weight: 650;
+    margin: 0;
+    opacity: 0.8;
+}
+.focus-controls-top {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+.focus-controls-bottom {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.focus-controls-top .header-btn,
+.focus-controls-bottom .pomodoro-btn {
+    background-color: var(--input-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+.focus-controls-bottom .pomodoro-btn {
+    border-radius: 12px;
+    width: auto;
+    height: auto;
+    padding: 12px 20px;
+}
+.bg-options {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    margin-top: 20px;
+}
+.bg-option {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.bg-option:hover {
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+}
+.bg-option img {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    display: block;
+}
+.bg-option span {
+    font-size: 0.9rem;
+    padding: 5px;
+    display: block;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.task-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 5px;
+    opacity: 0.8;
+}
+.task-duration i {
+    margin-right: 5px;
+}

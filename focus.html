@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Session</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('userBackgroundTheme');
+            if (savedTheme) {
+                document.documentElement.classList.add(savedTheme);
+            }
+        })();
+    </script>
+</head>
+<body class="focus-body">
+     
+    <audio id="background-music" src="calm_music.mp3" loop></audio>
+    <div class="focus-controls-top">
+        <button id="music-toggle" class="header-btn" title="Play/Pause Music">
+            <i class="fas fa-play"></i>
+        </button>
+        <button id="fullscreen-toggle" class="header-btn" title="Toggle Fullscreen">
+            <i class="fas fa-expand"></i>
+        </button>
+    </div>
+  
+    <div class="focus-container">
+        <div id="pomodoro-timer" class="pomodoro-timer-large">25:00</div>
+        <div class="focus-task">
+            <h1 id="focus-task-text">Loading Task...</h1>
+        </div>
+        <div id="pomodoro-controls">
+            <button id="pomodoro-start" class="pomodoro-btn"><i class="fas fa-play"></i> Start</button>
+            <button id="pomodoro-pause" class="pomodoro-btn hidden"><i class="fas fa-pause"></i> Pause</button>
+            <button id="pomodoro-reset" class="pomodoro-btn"><i class="fas fa-redo"></i> Reset</button>
+        </div>
+    </div>
+    <div class="focus-controls-bottom">
+        <button id="focus-complete-btn" class="pomodoro-btn">
+            <i class="fas fa-check"></i>. Mark as Done 
+        </button>
+    </div>
+
+    <footer><p>
+        <h1>“The task in front of you is the only moment that matters — give it your full attention, and the future will take care of itself.”</h1>
+    </p></footer>
+    <script src="focus.js"></script>
+</body>
+</html>

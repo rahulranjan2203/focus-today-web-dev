@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('userBackgroundTheme');
+            if (savedTheme) {
+                document.documentElement.classList.add(savedTheme);
+            }
+        })();
+    </script>
+</head>
+<body>
+    <nav class="top-navbar">
+        <div id="minimal-clock" class="minimal-clock">
+            <span data-unit="hours">00</span><span class="separator">:</span><span data-unit="minutes">00</span><span class="separator">:</span><span data-unit="seconds">00</span>
+        </div>
+        <div class="controls">
+            <button id="music-toggle" class="header-btn" title="Play/Pause Music"><i class="fas fa-play"></i></button>
+            <button id="fullscreen-toggle" class="header-btn" title="Toggle Fullscreen"><i class="fas fa-expand"></i></button>
+            <button id="change-bg-btn" class="header-btn" title="Change Background"><i class="fas fa-image"></i></button>
+            <button id="summaryButton" class="header-btn" title="Productivity Summary"><i class="fas fa-chart-line"></i></button>
+            <button id="theme-toggle" class="header-btn" title="Toggle Theme"><i class="fas fa-sun"></i></button>
+        </div>
+    </nav>
+
+    <div class="app-container">
+        <main class="content-container">
+            <header class="app-header">
+                <h1>Today's Focus</h1>
+                <h4>My to do list:</h4>
+            </header>
+            <div class="input-container">
+                <input type="text" id="taskInput" placeholder="What's your next task?">
+                <input type="date" id="dueDateInput" title="Due Date">
+                <select id="prioritySelect" title="Priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <input type="number" id="durationInput" min="1" placeholder="Mins" title="Focus Duration (minutes)">
+                <button id="addTaskButton">Add Task</button>
+            </div>
+            <div class="view-controls">
+                <button id="listViewBtn" class="view-btn active"><i class="fas fa-list-ul"></i> List</button>
+                <button id="kanbanViewBtn" class="view-btn"><i class="fas fa-columns"></i> Taskbar</button>
+            </div>
+            <div class="task-area">
+                <ul id="task-list-view" class="task-list"></ul>
+                <div id="kanban-view" class="kanban-board hidden">
+                    <div class="kanban-column" data-status="todo">
+                        <h3>To Do</h3>
+                        <ul class="kanban-tasks" data-column="todo"></ul>
+                    </div>
+                    <div class="kanban-column" data-status="inprogress">
+                        <h3>In Progress</h3>
+                        <ul class="kanban-tasks" data-column="inprogress"></ul>
+                    </div>
+                    <div class="kanban-column" data-status="done">
+                        <h3>Done</h3>
+                        <ul class="kanban-tasks" data-column="done"></ul>
+                    </div>
+                </div>
+            </div>
+             <div class="gamification-stats">
+                <p><strong>Streak:</strong> <span id="streak-count">0</span> days </p>
+                <p>A to-do list is not just a record of tasks, it’s a map of your intentions for the day.</p>
+            </div>
+        </main>
+    </div>
+    
+    <div id="modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="closeModal" class="close-btn">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <div id="bg-chooser-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="closeBgModal" class="close-btn">&times;</button>
+            <h2>Choose a Background</h2>
+            <div class="bg-options">
+                <div class="bg-option" data-theme="theme-bg-1" title="Lush Garden">
+                    <img src="backimg.png" alt="Lush Garden Theme">
+                    <span>Lush Garden</span>
+                </div>
+                <div class="bg-option" data-theme="theme-bg-2" title="Misty Mountains">
+                    <img src="nightimg.png" alt="Misty Nght Sky">
+                    <span>Misty Night Sky</span>
+                </div>
+                <div class="bg-option" data-theme="theme-bg-3" title="Calm Ocean">
+                    <img src="summerimg.png" alt="Summer sky">
+                    <span>Summer Sky</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    
+</body>
+</html>
