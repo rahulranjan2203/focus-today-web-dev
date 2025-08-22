@@ -176,8 +176,8 @@ button:hover { background-color: var(--hover-accent); transform: translateY(-2px
 
 footer {
     text-align: center;
-    padding: 0.1rem; /* MODIFIED: Reduced padding */
-    font-size: 0.31rem; /* MODIFIED: Added smaller font size */
+    padding: 0.45rem; /* MODIFIED: Reduced padding */
+    font-size: 0.47rem; /* MODIFIED: Added smaller font size */
     color: var(--text-muted);
     width: 100%;
     box-sizing: border-box;
@@ -198,6 +198,7 @@ footer {
     text-align: center;
     color: var(--text-color);
 }
+
 .focus-body::before {
     content: '';
     position: absolute;
@@ -208,43 +209,55 @@ footer {
     background-color: rgba(0, 0, 0, 0.4);
     z-index: -1;
 }
+
+/* MODIFIED: This container now controls the main vertical layout */
 .focus-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around; /* This spaces the elements evenly */
     align-items: center;
+    height: 90vh; /* Use most of the screen height */
+    width: 100%;
 }
+
+/* MODIFIED: Changed to vh for better vertical scaling */
 .pomodoro-timer-large {
-    font-size: 18vw;
+    font-size: 25vh; 
     font-weight: bold;
     font-family: 'Roboto Mono', 'Consolas', monospace;
     line-height: 1;
-    margin-bottom: 1rem;
     text-shadow: 0 5px 20px var(--shadow-color);
 }
-.focus-task {
-    margin-bottom: 2rem;
-}
+
 .focus-task h1 {
-    color: #e5e8e8;
-    font-size: 4rem;
-    font-weight: 650;
+    font-size: 4.8rem;
+    font-weight: 600;
     margin: 0;
     opacity: 0.8;
+    text-shadow: 0 3px 10px var(--shadow-color);
+    color: var(--text-color);
+    word-wrap: break-word;
+    max-width: 90vw; /* Ensure it doesn't overflow on small screens */
+    line-height: 1.1; /* Slightly tighter line height for better readability */
+    text-align: center; /* Center align for better aesthetics */
+    padding: 0 10px; /* Add some horizontal padding */
+    box-sizing: border-box;
+    transition: font-size 0.3s ease;
+    
 }
+
 .focus-controls-top {
     position: absolute;
     top: 20px;
     right: 30px;
+    display: flex;
+    gap: 10px;
 }
-.focus-controls-bottom {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
+
+/* REMOVED: .focus-controls-bottom is no longer needed */
+
 .focus-controls-top .header-btn,
-.focus-controls-bottom .pomodoro-btn {
+#focus-complete-btn.pomodoro-btn {
     background-color: var(--input-bg);
     border: 1px solid var(--glass-border);
     border-radius: 50%;
@@ -255,7 +268,8 @@ footer {
     justify-content: center;
     box-shadow: 0 2px 5px var(--shadow-color);
 }
-.focus-controls-bottom .pomodoro-btn {
+
+#focus-complete-btn.pomodoro-btn {
     border-radius: 12px;
     width: auto;
     height: auto;
@@ -300,4 +314,63 @@ footer {
 }
 .task-duration i {
     margin-right: 5px;
+}
+
+/* --- Add this at the end of your style.css file --- */
+
+/* Styles for tablets and mobile phones */
+@media (max-width: 768px) {
+    
+    /* Makes the main content area use more of the screen */
+    .content-container {
+        margin-top: 70px;
+        padding: 1rem;
+    }
+
+    /* Stacks the input fields vertically */
+    .input-container {
+        flex-direction: column;
+    }
+
+    /* Stacks the Kanban columns vertically */
+    .kanban-board {
+        grid-template-columns: 1fr;
+    }
+
+    /* Reduces the font size of the header for more space */
+    .app-header h1 {
+        font-size: 1.5rem;
+    }
+}
+
+
+/* --- Add this at the end of your style.css file --- */
+
+/* FIX for Navbar on Mobile Devices */
+@media (max-width: 480px) {
+    .top-navbar {
+        /* Allow items to wrap and stack */
+        flex-wrap: wrap;
+        height: auto; /* Allow navbar height to grow */
+        padding: 10px 1rem;
+    }
+
+    .minimal-clock {
+        /* Make the clock take the full width on its line */
+        width: 100%;
+        text-align: center;
+        font-size: 1.8rem; /* Make clock slightly smaller */
+        margin-bottom: 8px;
+    }
+
+    .controls {
+        /* Make the controls take the full width and center the buttons */
+        width: 100%;
+        justify-content: space-around;
+        margin-left: 0; /* Reset margin */
+    }
+
+    .controls .header-btn {
+        margin: 0; /* Reset individual button margins */
+    }
 }
