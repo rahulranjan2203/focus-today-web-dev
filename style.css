@@ -1,24 +1,3 @@
-/* --- Add this at the top of your style.css --- */
-/* NEW: Background Theme Classes */
-html {
-    /* Default background (Theme 1) */
-    background-image: url('backimg.png'); 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    height: 100%;
-}
-html.theme-bg-1 {
-    background-image: url('backimg.png');
-}
-/* MODIFIED: Swapped image URLs to match the thumbnails */
-html.theme-bg-2 {
-    background-image: url('nightimg.png');
-}
-html.theme-bg-3 {
-    background-image: url('summerimg.png');
-}
-
 /* --- Global Styles & THEME Variables --- */
 :root {
     /* Dark Theme (Default) */
@@ -44,13 +23,24 @@ body.light-mode {
     --text-color: #333333;
     --text-muted: #555555;
     --input-bg: rgba(255, 255, 255, 0.6);
-    --accent-color: #0d8affab;
-    --hover-accent: #5b5e61;
+    --accent-color: #0d8bff;
+    --hover-accent: #0069d9;
     --shadow-color: rgba(0, 0, 0, 0.1);
     --clock-text: #444444;
     --summary-bg: rgba(200, 200, 200, 0.8);
     --button-text-color: #ffffff;
 }
+
+html {
+    background-image: url('backimg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100%;
+}
+html.theme-bg-1 { background-image: url('backimg.png'); }
+html.theme-bg-2 { background-image: url('nightimg.png'); }
+html.theme-bg-3 { background-image: url('summerimg.png'); }
 
 body {
     font-family: 'Segoe UI', system-ui, sans-serif;
@@ -86,12 +76,8 @@ body {
     font-family: 'Roboto Mono', 'Consolas', monospace;
     letter-spacing: 2px;
 }
-.minimal-clock .separator {
-    animation: blink 1s step-end infinite;
-}
-@keyframes blink {
-    50% { opacity: 0; }
-}
+.minimal-clock .separator { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
 
 .app-container {
     width: 100%;
@@ -122,13 +108,11 @@ body {
 }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-/* --- Header & Controls --- */
 .app-header { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; width: 100%; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border); }
 .app-header h1 { margin: 0; color: var(--text-color); font-weight: 500; font-size: 1.8rem; }
 .app-header h4 { margin: 0; color: var(--text-muted); font-weight: 400; font-size: 1rem; }
 .controls .header-btn { margin-left: 15px; }
 
-/* --- All other styles below remain unchanged --- */
 .header-btn, .close-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-color); opacity: 0.8; transition: opacity 0.2s, color 0.2s; }
 .header-btn:hover, .close-btn:hover { opacity: 1; color: var(--accent-color); }
 .input-container { display: flex; gap: 10px; margin: 1.5rem 0; }
@@ -140,23 +124,12 @@ button:hover { background-color: var(--hover-accent); transform: translateY(-2px
 .view-btn { background-color: transparent; color: var(--text-color); border: 1px solid var(--glass-border); opacity: 0.7; font-size: 15px; }
 .view-btn.active { background-color: var(--accent-color); color: var(--button-text-color); opacity: 1; }
 .task-area { flex-grow: 1; overflow-y: auto; padding-right: 10px; }
-.task-item { 
-    display: flex; 
-    align-items: center; 
-    padding: 12px 15px; 
-    background-color: var(--input-bg); 
-    border-radius: 8px; 
-    margin-bottom: 10px; 
-    animation: slideInUp 0.5s ease; 
-    transition: transform 0.2s, box-shadow 0.2s; 
-    font-size: 16px;
-    color: var(--text-color);
-}
+.task-item { display: flex; align-items: center; padding: 12px 15px; background-color: var(--input-bg); border-radius: 8px; margin-bottom: 10px; animation: slideInUp 0.5s ease; transition: transform 0.2s, box-shadow 0.2s; font-size: 16px; color: var(--text-color); }
 .task-checkbox { width: 18px; height: 18px; margin-right: 15px; cursor: pointer; accent-color: var(--accent-color); }
 .priority-tag { font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 12px; margin-right: 15px; text-transform: uppercase; }
-.priority-tag.high { background-color: var(--priority-high); color: rgba(255, 0, 0, 0.551); }
-.priority-tag.medium { background-color: var(--priority-medium); color: rgba(255, 255, 0, 0.526); }
-.priority-tag.low { background-color: var(--priority-low); color: rgba(0, 128, 0, 0.995); }
+.priority-tag.high { background-color: var(--priority-high); color: white; }
+.priority-tag.medium { background-color: var(--priority-medium); color: #111; }
+.priority-tag.low { background-color: var(--priority-low); color: #111; }
 .task-item-content { flex-grow: 1; }
 .task-item-content.completed p { text-decoration: line-through; opacity: 0.6; }
 .kanban-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -176,8 +149,8 @@ button:hover { background-color: var(--hover-accent); transform: translateY(-2px
 
 footer {
     text-align: center;
-    padding: 0.45rem; /* MODIFIED: Reduced padding */
-    font-size: 0.47rem; /* MODIFIED: Added smaller font size */
+    padding: 0.5rem;
+    font-size: 0.5rem;
     color: var(--text-muted);
     width: 100%;
     box-sizing: border-box;
@@ -190,187 +163,105 @@ footer {
 }
 
 /* --- Focus Page Styles --- */
-.focus-body {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--text-color);
-}
+.focus-body { position: relative; display: flex; justify-content: center; align-items: center; text-align: center; color: var(--text-color); }
+.focus-body::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: -1; }
+.focus-container { display: flex; flex-direction: column; justify-content: space-around; align-items: center; height: 90vh; width: 100%; }
+.pomodoro-timer-large { font-size: 25vh; font-weight: bold; font-family: 'Roboto Mono', 'Consolas', monospace; line-height: 1; text-shadow: 0 5px 20px var(--shadow-color); }
+.focus-task h1 { font-size: 2.5rem; font-weight: 500; margin: 0; opacity: 0.8; }
+.focus-controls-top { position: absolute; top: 20px; right: 30px; display: flex; gap: 10px; }
+.focus-controls-top .header-btn, #focus-complete-btn.pomodoro-btn { background-color: var(--input-bg); border: 1px solid var(--glass-border); border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px var(--shadow-color); }
+#focus-complete-btn.pomodoro-btn { border-radius: 12px; width: auto; height: auto; padding: 12px 20px; }
 
-.focus-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: -1;
-}
+.bg-options { display: flex; justify-content: space-around; gap: 15px; margin-top: 20px; }
+.bg-option { cursor: pointer; border: 2px solid transparent; border-radius: 10px; overflow: hidden; text-align: center; transition: transform 0.2s, border-color 0.2s; }
+.bg-option:hover { transform: scale(1.05); border-color: var(--accent-color); }
+.bg-option img { width: 100px; height: 60px; object-fit: cover; display: block; }
+.bg-option span { font-size: 0.9rem; padding: 5px; display: block; background-color: rgba(0,0,0,0.3); }
 
-/* MODIFIED: This container now controls the main vertical layout */
-.focus-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around; /* This spaces the elements evenly */
-    align-items: center;
-    height: 90vh; /* Use most of the screen height */
-    width: 100%;
-}
+.task-meta { font-size: 0.8rem; color: var(--text-muted); margin-top: 5px; opacity: 0.8; }
+.task-duration i { margin-right: 5px; }
 
-/* MODIFIED: Changed to vh for better vertical scaling */
-.pomodoro-timer-large {
-    font-size: 25vh; 
-    font-weight: bold;
-    font-family: 'Roboto Mono', 'Consolas', monospace;
-    line-height: 1;
-    text-shadow: 0 5px 20px var(--shadow-color);
-}
+/* ================================================= */
+/* --- NEW: COMPREHENSIVE RESPONSIVE STYLES --- */
+/* ================================================= */
 
-.focus-task h1 {
-    font-size: 4.8rem;
-    font-weight: 600;
-    margin: 0;
-    opacity: 0.8;
-    text-shadow: 0 3px 10px var(--shadow-color);
-    color: var(--text-color);
-    word-wrap: break-word;
-    max-width: 90vw; /* Ensure it doesn't overflow on small screens */
-    line-height: 1.1; /* Slightly tighter line height for better readability */
-    text-align: center; /* Center align for better aesthetics */
-    padding: 0 10px; /* Add some horizontal padding */
-    box-sizing: border-box;
-    transition: font-size 0.3s ease;
-    
-}
-
-.focus-controls-top {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    display: flex;
-    gap: 10px;
-}
-
-/* REMOVED: .focus-controls-bottom is no longer needed */
-
-.focus-controls-top .header-btn,
-#focus-complete-btn.pomodoro-btn {
-    background-color: var(--input-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px var(--shadow-color);
-}
-
-#focus-complete-btn.pomodoro-btn {
-    border-radius: 12px;
-    width: auto;
-    height: auto;
-    padding: 12px 20px;
-}
-.bg-options {
-    display: flex;
-    justify-content: space-around;
-    gap: 15px;
-    margin-top: 20px;
-}
-.bg-option {
-    cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: 10px;
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.2s, border-color 0.2s;
-}
-.bg-option:hover {
-    transform: scale(1.05);
-    border-color: var(--accent-color);
-}
-.bg-option img {
-    width: 100px;
-    height: 60px;
-    object-fit: cover;
-    display: block;
-}
-.bg-option span {
-    font-size: 0.9rem;
-    padding: 5px;
-    display: block;
-    background-color: rgba(0,0,0,0.3);
-}
-
-.task-meta {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-top: 5px;
-    opacity: 0.8;
-}
-.task-duration i {
-    margin-right: 5px;
-}
-
-/* --- Add this at the end of your style.css file --- */
-
-/* Styles for tablets and mobile phones */
-@media (max-width: 768px) {
-    
-    /* Makes the main content area use more of the screen */
+/* For Tablets and Smaller Desktops */
+@media (max-width: 1024px) {
     .content-container {
         margin-top: 70px;
-        padding: 1rem;
+        height: calc(100vh - 90px); /* Adjust height for smaller screens */
     }
+    .pomodoro-timer-large {
+        font-size: 20vh;
+    }
+    .focus-task h1 {
+        font-size: 2rem;
+    }
+}
 
-    /* Stacks the input fields vertically */
+/* For Mobile Phones (Portrait) */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 1rem;
+        padding-bottom: 4rem; /* Ensure space above footer */
+    }
+    .content-container {
+        padding: 1rem 1.5rem;
+    }
     .input-container {
         flex-direction: column;
+        gap: 15px;
     }
-
-    /* Stacks the Kanban columns vertically */
     .kanban-board {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack columns */
     }
-
-    /* Reduces the font size of the header for more space */
     .app-header h1 {
         font-size: 1.5rem;
     }
+    .task-item {
+        flex-wrap: wrap; /* Allow items to wrap if needed */
+    }
+    .task-actions {
+        margin-left: auto; /* Push actions to the right */
+    }
+    footer {
+        padding: 0.5rem;
+        font-size: 0.7rem;
+    }
 }
 
-
-/* --- Add this at the end of your style.css file --- */
-
-/* FIX for Navbar on Mobile Devices */
+/* For Small Mobile Phones */
 @media (max-width: 480px) {
     .top-navbar {
-        /* Allow items to wrap and stack */
         flex-wrap: wrap;
-        height: auto; /* Allow navbar height to grow */
+        height: auto;
         padding: 10px 1rem;
     }
-
     .minimal-clock {
-        /* Make the clock take the full width on its line */
         width: 100%;
         text-align: center;
-        font-size: 1.8rem; /* Make clock slightly smaller */
+        font-size: 1.8rem;
         margin-bottom: 8px;
     }
-
     .controls {
-        /* Make the controls take the full width and center the buttons */
         width: 100%;
         justify-content: space-around;
-        margin-left: 0; /* Reset margin */
+        margin-left: 0;
     }
-
     .controls .header-btn {
-        margin: 0; /* Reset individual button margins */
+        margin: 0;
+    }
+    .content-container {
+        margin-top: 120px; /* Adjust for taller mobile navbar */
+        height: calc(100vh - 140px);
+    }
+    .pomodoro-timer-large {
+        font-size: 18vh;
+    }
+    .focus-task h1 {
+        font-size: 1.5rem;
+    }
+    .focus-controls-top {
+        right: 15px;
     }
 }
